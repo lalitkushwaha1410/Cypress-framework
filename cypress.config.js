@@ -2,9 +2,18 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   projectId: 'ca453y',
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    reportDir:"cypress/Results/Mochawesome",
+    charts: true,
+    reportPageTitle: 'Lalit: My Automation Custom Reports',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
+  },
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      require('cypress-mochawesome-reporter/plugin')(on);
     },
   },
 });
